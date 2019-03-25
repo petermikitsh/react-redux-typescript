@@ -9,3 +9,4 @@ Technologies:
 Features:
   - Code splitting (CSS & JS)
   - Linting (CSS & JS)
+  - Hot Module Reloading
