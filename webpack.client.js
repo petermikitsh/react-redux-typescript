@@ -55,6 +55,7 @@ module.exports = function (env) {
       publicPath: '/'
     },
     plugins: [
+      new webpack.NamedModulesPlugin(),
       new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin(),
       !devMode && new MiniCssExtractPlugin({
@@ -64,6 +65,9 @@ module.exports = function (env) {
       new StatsWebpackPlugin('stats-client.json')
     ].filter(Boolean),
     resolve: {
+      alias: {
+        'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom'
+      },
       extensions: ['.ts', '.tsx', '.js']
     },
     target: 'web'
