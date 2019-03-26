@@ -64,6 +64,9 @@ module.exports = function (env) {
       publicPath: '/'
     },
     plugins: [
+      new webpack.DefinePlugin({
+        PRODUCTION: JSON.stringify(!devMode),
+      }),
       new webpack.NamedModulesPlugin(),
       new webpack.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin(),
