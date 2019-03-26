@@ -2,6 +2,7 @@ const path = require('path');
 const StatsWebpackPlugin = require('stats-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = function (env) {
@@ -39,6 +40,14 @@ module.exports = function (env) {
       ]
     },
     optimization: {
+      minimizer: [
+        !devMode && new TerserWebpackPlugin({
+          extractComments: {
+            condition: 'some',
+            filename: '3rdpartylicenses.txt',
+          },
+        }),
+      ].filter(Boolean),
       runtimeChunk: 'single',
       splitChunks: {
         chunks: 'all',
